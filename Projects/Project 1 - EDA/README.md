@@ -154,7 +154,8 @@ With all of the analysis complete, can we recommend specific days in 2017 to tar
 2) Remove days which were historically unpleasant 
 
 This apporach led us to find 30 potential busy & pleasant days in August to October 2017 that clothing retailers can target for sales & popup events: 
-| | | |
+
+| Aug | Sep | Oct |
 | --- | --- | --- |
 | Tue Aug 01 2017 | Tue Sep 05 2017 | Fri Oct 06 2017 |
 | Thu Aug 03 2017 | Wed Sep 06 2017 | Thu Oct 12 2017 |
