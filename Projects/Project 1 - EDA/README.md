@@ -53,9 +53,9 @@ Based on the above figure, several trends were identified:
 
 | Month | Total Ridership |
 | ----- | :-----: |
-| Aug 2016 | 4700032.58 |
-| Sep 2016 | 5020936.07 |
-| Oct 2016 | 5021505.93 |
+| Aug 2016 | 4,700,032.58 |
+| Sep 2016 | 5,020,936.07 |
+| Oct 2016 | 5,021,505.93 |
 
 In order to ensure our clothing retailer targers a *busy day in NYC*, we will say that a busy day consists of Tuesdays, Wednesdays, Thursdays, Fridays which are not hoidays. 
 
@@ -67,9 +67,13 @@ Plotting ridership per station demonstrates that some stations are busier than o
 
 ![nyc_mta_ridership_per_station_per_day](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_ridership_per_station_per_day.png "nyc_mta_ridership_per_station_per_day")
 
-These busy stations repesent major traffic hubs in the MTA system that could represent opportunities to target a larger audience for clothing retailers.  To detail these areas, a heatmap was created:
+These busy stations repesent major traffic hubs in the MTA system that could represent opportunities to target a larger audience for clothing retailers.  To detail these areas, a heatmap was created.  Subway stations that represent hubs or are clustered closely together tend to have a much higher intensity on the heatmap.  Areas of specfic interest are the financial district & grand central station:
 
 ![nyc_mta_heatmap](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_heatmap.png)
+
+Plotting the ridership per station for the top 30 stations, we can see that the world trade centre and grand central are among these top stations:
+
+![nyc_mta_top_30_stations](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_top_30_stations.png "nyc_mta_top_30_stations")
 
 (see [nyc_mta_analysis notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/nyc_mta_analysis.ipynb) for more)
 
@@ -82,15 +86,15 @@ As one would imagine for a city located in the North East, the average temperatu
 
 |  | Aug | Sept | Oct |
 | --- | --- | --- | --- |
-| 2014 | 74.516129 | 69.733333 | 59.629032 |
-| 2015 | 78.967742 | 74.450000 | 58.048387 |
-| 2016 | 79.177419 | 71.800000 | 58.758065 |
+| 2014 | 74.51 | 69.73 | 59.62 |
+| 2015 | 78.96 | 74.45 | 58.04 |
+| 2016 | 79.17 | 71.80 | 58.75 |
 
 ![nyc_monthly_avg_temp](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_monthly_avg_temp.png "nyc_monthly_avg_temp")
 
 Averaging the temperatures over 3 years, we were able to achieve a new daily average temperature that could be used for our analysis.  This average of 3 years will hopefully settle out any annomalies that we experience in an overly warm or cool year.  The average of 3 years of data looks as follows: 
 
-[nyc_daily_avg_temp](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_daily_avg_temp.png "insert nyc_daily_avg_temp")
+![nyc_daily_avg_temp](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_daily_avg_temp.png "insert nyc_daily_avg_temp")
 
 (see [nyc_weather_cleaning_and_analysis notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/nyc_weather_cleaning_and_analysis.ipynb) for more)
 
@@ -124,11 +128,11 @@ We've found that, historically, there are 48 days that are pleasant.  We can now
 
 (see [nyc_weather_cleaning_and_analysis notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/nyc_weather_cleaning_and_analysis.ipynb) for more)
 
-## Exploring Busy & Pleasant Days**
+## Exploring Busy & Pleasant Days
 Based on our analysis above, we have outlined that a busy & pleasant day should be defined as:
 * One of the following weekdays: Tuesday, Wednesday, Thrusday, Friday
-* Have an average temperature >= 60F
-* Have less than an average of 0.05mm precipitaiton
+* Have a daily average temperature >= 60F
+* Have a daily average precipitation < 0.05mm
 
 Knowing this, we can overlay our two datasets to find the following pleasant days: 
 
@@ -144,13 +148,13 @@ We noted:
 * Ridership is slightly negatively correlated to temperature - meaning as temperature decreases, ridership increases.  This is consistent with our analysis thus far. 
 * Ridership is also slightly negatively correlated to precipitation - meaning as precipitation descreases, ridership increases.  We shouldn't read into this too deeply.  I believe the large number of days with no precipitation impacts this correlation.  We also see that precipitation can happen on warm days, which also contributes to a decrease in ridership.
 
-With all of the analysis complete, can we recommend specific days in 2017 to target?  We used the following steps: 
+With all of the analysis complete, can we recommend specific days in 2017 to target?  To accomplish this, we performed the following for the period of September 1st to October 31st 2017:
 
-For the period of September 1st to October 31st 2017
 1) Remove Saturdays, Sundays, and Mondays (which represent non-busy days)
 2) Remove days which were historically unpleasant 
 
-This apporach led us to find 30 potential busy & pleasant days in 2017: 
+This apporach led us to find 30 potential busy & pleasant days in August to October 2017 that clothing retailers can target for sales & popup events: 
+| | | |
 | --- | --- | --- |
 | Tue Aug 01 2017 | Tue Sep 05 2017 | Fri Oct 06 2017 |
 | Thu Aug 03 2017 | Wed Sep 06 2017 | Thu Oct 12 2017 |
@@ -191,6 +195,6 @@ This EDA can also be revisited to improve accurancy of the data based on the bel
 ##### Weather Data Improvements
 * Include additional variables for determining a 'pleasant day'.  Examples of these may be: cloud coverage, dew point humidity, etc.  
 
-#### Additional data
+##### Include Additional Supporting Data
 * Include additional market variables such as target demographics, competitor locations, and seasonality to better identify specific locations within the city to target. 
 
