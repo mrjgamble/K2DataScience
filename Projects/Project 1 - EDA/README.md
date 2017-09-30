@@ -196,6 +196,6 @@ This EDA can also be revisited to improve accurancy of the data based on the bel
 ##### Weather Data Improvements
 * Include additional variables for determining a 'pleasant day'.  Examples of these may be: cloud coverage, dew point humidity, etc.  
 
-##### Include Additional Supporting Data
+##### Additional Supporting Data
 * Include additional market variables such as target demographics, competitor locations, and seasonality to better identify specific locations within the city to target. 
 
