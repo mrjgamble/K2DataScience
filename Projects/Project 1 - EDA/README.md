@@ -71,6 +71,8 @@ These busy stations repesent major traffic hubs in the MTA system that could rep
 
 ![nyc_mta_heatmap](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_heatmap.png)
 
+*note: heatmap will not be interactive in markdown.  Please see nyc_mta_analysis notebook linked below* 
+ 
 Plotting the ridership per station for the top 30 stations, we can see that the world trade centre and grand central are among these top stations:
 
 ![nyc_mta_top_30_stations](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_top_30_stations.png "nyc_mta_top_30_stations")
