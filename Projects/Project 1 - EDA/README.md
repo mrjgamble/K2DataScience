@@ -19,16 +19,19 @@ We will use two datasets to answer the question of which days are historically b
 
 
 ### MTA Ridership Data
-The MTA turnstile dataset contains turnstile data collected from all stations.  We are particularly looking at data from September to October 2016.
+The MTA turnstile dataset contains turnstile data collected from stations across the nyc subway network.  We be specifically looking at data from August to October 2016.
 
-The original thought was to use data spanning multiple years, averaging daily ridership across the years in order to have a better sense of which days are historically busy.  However, it was found that the structure of the turnstile data changed from 2014 2016 making it difficult to accurately align station data across multiple years.  For example - 
+The original thought was to use data spanning multiple years, however, it was found that the structure of the turnstile data changed from 2014 to 2016 making it difficult to accurately align station data across multiple years.  For example - 
 * In October 2014, the MTA changed the turnstile data schema, meaning data prior to October 2014 could not aligned with data recorded in or after October 2014.
 * Between 2015 & 2016, the MTA changed how station names were recorded.  As a result, it would be difficult to accurately align turnstile data from 2015 with the appropriate station data in 2016.
 
-Before any analysis of the MTA dataset could occur, a thorough cleaning was required.  The data itself is recorded at the turnstile level - meaning it needed to be summarized at the station level and loaded into a Pandas DataFrame before analysis could begin.  This process is detailed in the ridership cleansing notebook. **INSERT LINK**  
+Before any analysis of the MTA dataset could occur, a thorough cleaning was required.  The data itself is recorded at the turnstile level - meaning ridership numbers had to be summarized at the station level before being loaded into a Pandas DataFrame for analysis.  This cleaning process can be found in detail in the [nyc_mta_cleaning notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/nyc_mta_cleaning.ipynb).  
 
-**Exploring Ridership**
-The first thing to be looked at was the total ridership across September to October:
+#### Exploring MTA Ridership
+
+Upon successfully cleaning the data, we first looked at the total ridership across the time frame: 
+
+![nyc_mta_ridership_per_day.png](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_ridership_per_day.png "nyc_mta_ridership_per_day")
 
 **nyc_mta_ridership_per_day**
 
