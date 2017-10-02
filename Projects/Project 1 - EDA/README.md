@@ -10,10 +10,10 @@ In this project, our client is a clothing retailer who is looking to plan flash 
 
 We want to help the clothing retailer pick several days over the next few months that will maximize their exposure and minimize the chance of poor weather.
 
-This analysis will only outline an EDA, laying the groudwork for futher analysis, including predictive analysis if desired. 
-
 ## Approach
-We will use two datasets to answer the question of which days are historically busy and pleasant in NYC:
+*Prior to beginning this EDA, an EDA mvp was completed to provide inital insights into the datasets.  Details of this mvp can be found in the [nyc_mta_weather notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/nyc_mta_weather_eda_mvp.ipynb).*
+
+Two datasets were used to answer the question of which days are historically busy and pleasant in NYC:
 * Using turnstile data from the MTA will be our way to indicate the busyness of a day. 
 * Weather data supplied from the NOAA will be used to identify pleasant weather days. 
 
@@ -22,7 +22,7 @@ We will use two datasets to answer the question of which days are historically b
 
 The MTA turnstile dataset contains turnstile data collected from stations across the nyc subway network.  We be specifically looking at data from August to October 2016.  
 
-The original thought was to use data spanning multiple years, however, it was found that the structure of the turnstile data changed from 2014 to 2016 making it difficult to accurately align station data across multiple years.  For example - 
+The original thought was to use data spanning multiple years; However, it was found that the structure of the turnstile data changed from 2014 to 2016 making it difficult to accurately align station data across multiple years.  For example - 
 * In October 2014, the MTA changed the turnstile data schema, meaning data prior to October 2014 could not aligned with data recorded in or after October 2014.
 * Between 2015 & 2016, the MTA changed how station names were recorded.  As a result, it would be difficult to accurately align turnstile data from 2015 with the appropriate station data in 2016.
 
@@ -193,7 +193,7 @@ This EDA can also be revisited to improve accurancy of the data based on the bel
 
 ##### MTA Data Improvements
 * We only looked at a single year of ridership to determine historical ridership values.  We could incorporate additional years to normalize the data and achieve a better predictive model
-* We found that turnstile data often had itegrity issues, as ridership counts often were out of sync from one day to the next.  We used the data as best we could, however the turnstile data issues can result in inaccurate ridership levels.
+* We found that turnstile data often had itegrity issues, as ridership counts often were out of sync from one day to the next.  These issues can result in inaccurate ridership levels.
 
 ##### Weather Data Improvements
 * Include additional variables for determining a 'pleasant day'.  Examples of these may be: cloud coverage, dew point humidity, etc.  
