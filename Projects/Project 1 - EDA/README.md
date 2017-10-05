@@ -59,7 +59,7 @@ Based on the above figure, several trends were identified:
 
 Based on these averages - it would be safe to assume that weekdays are busier than weekends.  However, is it safe to assume that Tuesdays, Wednesdays, Thursdays, and Fridays are busier than Mondays?  In order to prove this, we can perform a ttest on our data.  Our null hypothesis will state that *Monday ridership levels are the same as every other weekday*.
 
-The results of the ttest are as follows:
+The p-values obtained from the ttest are as follows:
 
 |  | Tuesday | Wednesday | Thursday | Friday |
 | --- | ---- | --------- | -------- | ------ |
