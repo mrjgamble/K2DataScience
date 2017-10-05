@@ -1,4 +1,4 @@
-date,station,line,division,daily_ridership,pleasant_day
+date,station,line,division,ridership,pleasant_day
 2016-07-31,59 ST,NQR456,BMT,7965,False
 2016-08-01,59 ST,NQR456,BMT,15594,False
 2016-08-02,59 ST,NQR456,BMT,17262,True
