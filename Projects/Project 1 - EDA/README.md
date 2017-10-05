@@ -211,14 +211,20 @@ The following recommendations have been made to ensure clothing retailers are ta
 4. Ridership is negatively correlated to average temperature.  As temperature decreases, we expect to see ridership increase. 
 5. Several areas of the city are expected to be busier due to traffic hubs.  Heatmaps can help identify these busy areas for clothing retailers.  
 
+Although this project servered as a great introduction into data exploration and graphing, it was flawed due to the inconsistencies found in the MTA dataset.  Particularly: 
+* Multiple years of MTA ridership data should be used in order to accuractely depict a historical analysis of 'busy days'.  This was not possible due to the ever changing naming conventions for stations that the MTA has used across the years.  
+* Inaccurate turnstile readings from day to day - this introduced inaccurate ridership levels across all stations.
+* Inaccurate reporting periods from station to station - majority of stations reported at 4 hour intervals.  Others reported at different hour/minute/second intervals.  This made it hard to accurately match reporting periods across all stations.  
+
 ## Next Steps
 This project was never intended to go beyond the initial EDA.  This initial EDA can be expanded upon to included predictive modelling to help clothing retailers predict pleasant and busy days in NYC.  
 
 This EDA can also be revisited to improve accuracy of the data based on the below findings:
 
 ##### MTA Data Improvements
-* We only looked at a single year of ridership to determine historical ridership values.  We could incorporate additional years to normalize the data and achieve a better predictive model.  Looking at only a single year of ridership data does not allow us to paint the picture of historically busy days. 
-* We found that turnstile data often had integrity issues.  It was found that ridership counts often were out of sync and reporting periods were not consistent across the data.  These issues can result in inaccurate ridership levels.
+As mentioned above 
+* Incorporate additional years to normalize the data and achieve a better predictive model.  Looking at only a single year of ridership data does not allow us to paint the picture of historically busy days. 
+* Improve turnstile data integrity issues.  It was found that ridership counts often were out of sync and reporting periods were not consistent across the data.  These issues can result in inaccurate ridership levels.
 
 ##### Weather Data Improvements
 * Include additional variables for determining a 'pleasant day'.  Examples of these may be: cloud coverage, dew point humidity, etc.  
