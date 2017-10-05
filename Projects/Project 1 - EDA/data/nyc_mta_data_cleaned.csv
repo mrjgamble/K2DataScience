@@ -1,4 +1,4 @@
-date,station,line,division,daily_ridership
+date,station,line,division,ridership
 2016-07-31,59 ST,NQR456,BMT,7965
 2016-08-01,59 ST,NQR456,BMT,15594
 2016-08-02,59 ST,NQR456,BMT,17262
