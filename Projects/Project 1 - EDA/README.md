@@ -77,7 +77,8 @@ After acknowledging that busy days are Tuesdays, Wednesdays, Thursdays, and Frid
 
 The MTA data is summarized on a 4-hour interval (4am, 8am, 12pm etc).  However, upon inspecting the data further it was found that there are turnstiles that do not follow this reporting period.  It was found that several stations (particularly on the PATH line) report on a random hour/minute/second.  In order to align the data, it was resampled to 4 hour intervals using a 'sum' aggregator.  The results were then graphically displayed on a line plot (see below). 
 
-**insert graphy***
+![nyc_mta_ridership_per_hour](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/Project%201%20-%20EDA/figures/nyc_mta_ridership_per_hour.png "nyc_mta_ridership_per_hour")
+
 
 * It can be noted that there are only 2 reporting periods near the end of a day - 8:00pm and 12:00am (also known as 0:00hr).  Ridership from 8:01pm to 12:00am are summarized into the 0:00hr reporting period.  This is why we see such significant traffic at this early morning time (think Friday nights, or nights which have a sporting event ending after 8:00pm). 
 
