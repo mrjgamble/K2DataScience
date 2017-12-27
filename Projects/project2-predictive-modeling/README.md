@@ -11,7 +11,7 @@ The questions we are looking to answer in this project are as follows:
 2. If a loanee will default, can we predict how much the loanee is likely to repay before default?
 
 # Exploratory Data Analysis
-[see full EDA notebook](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/notebooks/01-lending-club-eda.ipynb)
+An exploratory analysis of the data occurred prior to building models.  The full [EDA notebook can be found here](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/notebooks/01-lending-club-eda.ipynb)
 
 ## Exploring Loan Amounts
 Lending club allows borrowers to request up to $40,000.  Examining the loan data, we find that the average loan hovers around $14,445.  We find the majority of loans lie within the $7,500 to $20,000 range.  
@@ -20,7 +20,7 @@ Lending club allows borrowers to request up to $40,000.  Examining the loan data
 
 The dataset contains loans in a variety of statuses.  The breakdown is as follows:
 
-| Status | Share |
+| Status | Share (%) |
 | --- |:---:|
 | Current | 60.4 |
 | Fully Paid | 29.1 |
@@ -29,7 +29,7 @@ The dataset contains loans in a variety of statuses.  The breakdown is as follow
 | In Grace Period | 1.0 |
 | Late (16-30 days) | 0.4 |
 | Does not meet the credit policy. Status: Fully Paid | 0.3 |
-| Does not meet the credit policy.  Status: Charged Off 0.1 |
+| Does not meet the credit policy.  Status: Charged Off | 0.1 |
 | Issued | 0.1 |
 | Default | 0.0 |
 
@@ -37,11 +37,11 @@ Loans provided by Lending Club appear to be very sound, with ~90% of loans resid
 
 ![Loan Amnts By Status](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_by_status.png)
 
-Although a status of 'late' does not mean that a loan has defaulted, we are assuming that it will lead to a default status in this project.  It also allows us to have more data for classifying and predicting bad loans.
+Although a status of 'Late' does not mean that a loan has defaulted, we are assuming that it will lead to a default status in this project.  It also allows us to have more data for classifying and predicting bad loans.
 
-[Loan Amnts By Default vs NonDefault](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_defaultvsnondefault.png)
+![Loan Amnts By Default vs NonDefault](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_defaultvsnondefault.png)
 
-In the above graph, we've grouped the following statuses into the 'default' category:
+In the above graph, we've grouped the following statuses into the 'Default' category:
 * Charged Off
 * Default
 * Does not meet the credit policy.  Status: Charged Off
@@ -51,32 +51,32 @@ In the above graph, we've grouped the following statuses into the 'default' cate
 ## Exploring Issue Date
 The lending club provides the month & year that each loan was issued.  Plotting this data allows us to see how lending club has grown over the years.
 
-[Loan Amnts By Issue Date](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date.png)
+![Loan Amnts By Issue Date](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date.png)
 
 Loan club went public in 2014 - which could explain the sharp jump in loans issues during this time.  If we look closer at the number of loans issued per month, we find a trend that loans increase at the end of each quarter as well as toward the end of the year.  This could be related to financial commitments occurring at the beginning of each quarter (e.g. financial repayments).
 
-[Loan Amnts By Issue Month](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_count_by_month.png)
+![Loan Amnts By Issue Month](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_count_by_month.png)
 
 ## Exploring Terms
-The lending club offers repayment terms of 36 & 60 months.  
+The Lending Club offers repayment terms of 36 & 60 months.  
 
-[Loans By Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/terms_defaultvsnondefault.png)
+![Loans By Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/terms_defaultvsnondefault.png)
 
 Examining terms based on default vs non-default status, we do not see any particular trends.  However, looking at loan distribution, we find that a longer term often correlates to a higher loan amount.
 
-[Loan Amnts by Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_by_term.png)
+![Loan Amnts by Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_by_term.png)
 
 ## Exploring Loan Grades
 Lending Club assigns a loan grade to each loan representing the risk associated to the loan.  The higher the grade, the less risk associated to the loan.
 
-[Loan Amnts by Date and Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date_grade.png)
+![Loan Amnts by Date and Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date_grade.png)
 
 As we can see from the plot, Lending Club has expanded the number of riskier loans (grades B, C, D & E) over the past 5 years.  The most popular loan is grade B, followed closely by grade C.
 
 If we again use our classification of 'bad' loans as mentioned above, we see the following default rates per grade:
 
 | Grade | Default (%) |
-| --- | |:---:|
+| --- |:---:|
 | A | 3.0 |
 | B | 6.0 |
 | C | 9.0 |
@@ -88,11 +88,11 @@ If we again use our classification of 'bad' loans as mentioned above, we see the
 ## Exploring Interest Rates
 As with loan grades, Lending Club also assigns an interest rate for each loan.  The higher the interest rate, the riskier the loan.  The average interest rate is 13.1%
 
-[Interest Rates](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist.png)
+![Interest Rates](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist.png)
 
 As one would imagine, the lower the loan grade, the higher the interest rate.
 
-[Interest Rates by Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist_by_grade.png)
+![Interest Rates by Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist_by_grade.png)
 
 ## Exploring Purpose
 Lending club categorizes loan purposes for easy aggregation.  We see that the majority of loans are for debt consolidations, followed by credit card repayment.
@@ -289,7 +289,7 @@ Our results are considerably better, achieving an roc auc score of 97%.
 
 We also see that our recall score has increased significantly, up to 85%.  We are much happier with these results.  
 
-## Conclusion
+### Classification Conclusion
 Brining it all together, we plot the ROC Curve for all models to compare results:
 
 We find that our Random Forest Classififer using SMOTE for class balancing is performing the best.  
