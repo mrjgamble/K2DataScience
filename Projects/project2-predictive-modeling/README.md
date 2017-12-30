@@ -343,21 +343,85 @@ Looking at the loan profitability by grade, we find that lower grades have a hig
 | F | 6.1 |
 | G | 5.1 |
 
-## Model Creation
+## Model Descriptions
+Similarly to our classification section, we created several regression models to see how different algorithms and feature combinations performed.  These include:
+
+* Linear Regression - using only featured engineered columns
+* Linear Regression - Using all features
+* Linear Regression - Using feature selection
+* Random Forest Regression - Using all features
+* Random Forest Regression - Using feature selection
+
 Model success was determined by examining Root Mean Squared Error (RMSE).  This allows us to gauge the size of error associated with our model.  The higher the error, the less likely our model will be able to accurately predict repayment amount.   
 
-Similarly to our classification section, we created several regression models to see how different algorithms and feature combinations performed.  
-
-* Linear Regression - using only featured entineered columns
-* Linear Regression - Using all Features
-* Linear Regression - using feature selection
-* Random Forest Regression - Using Feature selection
-
-Linear Regression
+### Linear Regression (Engineered Features)
+As one would expect, creating a model using only our Engineered Features will more likely than not create a model with a high RMSE.  As stated above, we only have 7 engineered features:
 
 
+| Feature Name | Description |
+| --- | --- |
+| low_deliqent_job | Identifies whether the loanee's occupation has a high probability of loan defaults |
+| credit_line_length_mnths | Identifies the length (in months) for which the loanee has established credit.  The longer the credit history, the less likely a loanee will default |
+| inq_last_6mths_cat | Identifies if the loanee has requested a credit check in the last 6 months |
+| pub_rec_cat | Identifies if the loanee has had a derogatory public record.
+| fully_funded | Identifies if the requested loan has been fully backed by investors |
+| issue_d_year | Identifies the year for which the loan request was issued |
+| issue_d_month | Identifies the month for which the loan request was issued |
 
 
-Conclusions
+The resulting model produced an RMSE of ~$6460, meaning our model will provide an estimate of repayment within +/- $6460.  This is not accurate enough for a productive model.  
+
+### Linear Regression (All Features)
+The next step was to create a model using all features to determine if we can reduce our RMSE.
+
+The result of this model appears to generalize to the training data, performing poorly on our testing dataset with an RMSE of over 1.2 x 10^12.
+
+Looking into the residual values, we can clearly see that this model suffers from heteroscedasticity.  
+
+![reg_lr_af_results](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_results.png)
+
+### Linear Regression (Feature Selection)
+We've seen heteroscedasticity in our prior model, which has poor results with our testing dataset.  In order to remove this heteroscedasticity, we will look at feature selection to eliminate collinearity .
+
+Feature selection was performed manually by observing Pearson correlation coefficients in a pair plot (see below) and selecting those features which had a correlation of at least 0.2 to our target variable of loan profit.
+
+![reg_lr_af_corr](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_corr.png)
+
+Based on this manual selection, we reduce our feature set down to 21 features. We needed to also ensure that we remove any highly correlated features, which we confirmed by viewing a correlation matrix:
+
+![reg_lr_af_corr_matrix](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_corr_matrix.png)
+
+Upon viewing the above matrix, we dropped 6 additional columns (funded_amnt, installment, tot_cur_bal, total_rev_hi_lim, tot_hi_cred_lim, total_il_high_credit_limit), leaving us with 15 features to perform the model creation.
+
+The Linear Regression model created using 15 features performed just as poorly as our model with all features.  The model performed well on the training dataset.  It is however, unable to predict the expected profit using our test dataset - producing an RMSE of 2.6 x 10^14.  This does not create a suitable model to solve our problem.
+
+### Decision Tree Regressor (Feature Selection)
+We were unable to produce a linear regression model to accurately predict the amount of profit on defaulted loans.  Our next step is to create a model using Decision Tree Regression.  We will again use our 15 features selected during feature selection.
+
+The results are significantly better.  Our training dataset produces a model with RMSE of 0.  Running our test dataset through the model, we achieve an RMSE of ~$4940.  
+
+The plot of the residuals for our test dataset also displays that our heteroscedasticity has been decreased, but still present.
+
+![reg_dt_fs_residuals](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_dt_fs_residuals.png)
+
+### Random Forest Regressor (Feature Selection)
+Finally we test a third regression model in search of being able to predict the amount of profit on defaulted loans.  Our final model is build using a Random Forest Regressor.
+
+Hyperparameter tuning was performed using RandomizedSearchCV to find optimal parameters for our model.  
+
+However, like we have seen previously, our model was only able to produce an RMSE of ~$3650.  It performs better than our Decision Tree Regressor, but still see reminents of heteroscedasticity within our dataset used.
+
+![reg_rf_fs_residuals](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_rf_fs_residuals.png)
+
+Even if we are able to correctly identify a loanee as a potential default, we can only predict the payback with an accuracy of +/- $3650.  This does not provide great confidence.
+
+The reason behind the inaccurate prediction is most likely due to the high variance in repayment.  There are many factors that go into the prediction, many which lie outside of the dataset provided. For example, a loanee could lose their source of income, or environmental impacts such as hurricanes & floods could increase financial burdens.
+
+This was a good exercise in creation of a regression model, but ultimately did not provide a model that could be used in predicting loan repayment.
+
+## Conclusions & Next Steps
+Through this project we were able to produce a model for classifcation prediction.
+
 * Given time, I would recreate models with & without the columns missing from prior to 2012.  I feel that I had added bias to the data by imputing the mean for each column in data prior to 2012.  Creating models with & without the columns would allow comparisons to see how imputing data affects the outcome.  
 * Balance classes sooner - use throughout
+* have additional features for use in predicting repayment 
