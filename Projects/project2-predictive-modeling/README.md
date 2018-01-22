@@ -1,17 +1,13 @@
 # Lending Club - Predictive Modeling Project
-
-This project explores a dataset provided by [Lending Club](www.lendingclub.com), which connects borrowers with investors through their online marketplace.  Lending club publicly provides loan statistics via their [statistics page](https://www.lendingclub.com/info/download-data.action).
-
-For the purpose of this analysis, we will examine loan data from 2007 to 2017 Q3.
-
-The questions we are looking to answer in this project are as follows:
-1. Based on a loanee's application data, is possible to predict whether a loanee will default.  
-2. If a loanee will default, can we predict how much the loanee is likely to repay before default?
+This project explores a dataset provided by [Lending Club](www.lendingclub.com), an online marketplace connecting borrowers with investors.  Lending club publicly provides loan statistics via their [statistics page](https://www.lendingclub.com/info/download-data.action).
+For the purpose of this analysis, we will examine loan data from 2007 to 2017 Q3.  Specifically we want to know:
+1. Is it possible to predict if a loanee will default based purely on loan application data?
+2. If a loanee is expected to default, can we predict how much the loanee is likely to repay before defaulting?
 
 ## 1. Exploratory Data Analysis
 [(See the full EDA notebook)](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/notebooks/01-lending-club-eda.ipynb)
 
-## Exploring Loan Amounts
+### Exploring Loan Amounts
 Lending club allows borrowers to request up to $40,000.  We find that the average loan is $14,445, with the majority of loans falling within the $7,500 to $20,000 range.  
 
 ![Loan Amnts](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist.png)
@@ -35,7 +31,7 @@ Loans provided by Lending Club appear to be very sound, with ~90% of loans resid
 
 ![Loan Amnts By Status](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_by_status.png)
 
-Although a Late status does not mean that a loan will default, we have made the assumption that it will lead to a default status in this project.  This also allows us to have additional data for classifying and predicting bad loans.
+Although a late status does not mean that a loan will default, we have made the assumption that it will lead to a default status in this data exploration.
 
 In the below graph, we've grouped the following statuses into the 'Default' category:
 * Charged Off
@@ -46,7 +42,7 @@ In the below graph, we've grouped the following statuses into the 'Default' cate
 
 ![Loan Amnts By Default vs NonDefault](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_defaultvsnondefault.png)
 
-## Exploring Issue Date
+### Exploring Issue Date
 The lending club provides the month & year that each loan was issued.  Plotting this data allows us to see how lending club has grown over the years.
 
 ![Loan Amnts By Issue Date](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date.png)
@@ -55,7 +51,7 @@ Loan club went public in 2014 which could explain the sharp jump in loans issues
 
 ![Loan Amnts By Issue Month](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_count_by_month.png)
 
-## Exploring Terms
+### Exploring Terms
 The Lending Club offers repayment terms of 36 & 60 months.  
 
 ![Loans By Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/terms_defaultvsnondefault.png)
@@ -64,7 +60,7 @@ Examining terms based on default vs non-default status, we do not see any partic
 
 ![Loan Amnts by Term](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_hist_by_term.png)
 
-## Exploring Loan Grades
+### Exploring Loan Grades
 Lending Club assigns a loan grade to each loan representing the risk associated to the loan.  The higher the grade, the less risk associated to the loan.
 
 ![Loan Amnts by Date and Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_amnt_by_date_grade.png)
@@ -83,7 +79,7 @@ If we again use our classification of 'bad' loans as mentioned above, we see the
 | F | 26.0 |
 | G | 25.0 |
 
-## Exploring Interest Rates
+### Exploring Interest Rates
 As with loan grades, Lending Club also assigns an interest rate for each loan.  The higher the interest rate, the riskier the loan.  The average interest rate is 13.1%
 
 ![Interest Rates](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist.png)
@@ -92,7 +88,7 @@ As one would imagine, the lower the loan grade, the higher the interest rate.
 
 ![Interest Rates by Grade](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/int_rate_hist_by_grade.png)
 
-## Exploring Purpose
+### Exploring Purpose
 Lending Club categorizes loan purposes for easy aggregation.  We see that the majority of loans are for debt consolidations, followed by credit card repayment.
 
 ![Purpose](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan_purpose_hist.png)
@@ -116,14 +112,15 @@ Digging deeper, we see that loans for educational purposes are most likely to de
 | credit_card | 7.6 |
 | car | 6.6 |
 
-## Exploring Loan Location
+### Exploring Loan Location
+
 Lending Club provides loans to everyone within the United States.  Looking at the loan distribution, California, New York, Texas & Florida are the leading states in lending.
 
 ![Location](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/loan-club-EDA-map.png)
 
 ## Exploring Null Values
-Before moving on, we need to address missing values within our dataset.  It was found that Lending Club began tracking additional columns after 2012.  As a result, loans prior to 2012 have null data for the following columns:
 
+Before moving on, we need to address missing values within our dataset.  It was found that Lending Club began tracking additional columns after 2012.  As a result, loans prior to 2012 have null data for the following columns:
 * tot_coll_amt
 * tot_cur_bal
 * total_rev_hi_lim
@@ -155,25 +152,27 @@ Rather than dropping 5 years worth of data or dropping the above columns (as the
 
 Of the remaining data - any column missing more than 7% of data was removed.
 
-# 2. Building A Classification Model
-
+## 2. Building A Classification Model
 [(See full classification notebook)](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/notebooks/02-lending-club-classification.ipynb)
 
-We want to create a classification model to predict whether a loanee will default, based only on the information we have about the loanee's current financial history.  To do so, we examine loans which are in a completed status.  Specifically:
+We want to create a classification model to predict whether a loanee will default, based only on the loanee's current financial snapshot.  To do so, we examine loans which are in a completed status.  Specifically:
+
 * Fully Paid
-* Late (16-30 days)
+* Late (16 - 30 days)
 * Late (31 - 120 days)
 * Default
 * Charged off
 
 A loan enters default status once it is overdue by 120 days.  For the purpose of our classification exercise we will assume loans in a late status will default.  This assumption also increases the population size of our data that will be used for model training. As such, we will assume the following statuses are 'default':
+
 * Late (16 - 30 days)
 * Late (31 - 120 days)
 * Default
 * Charged Off  
 
-## Model Descriptions
-We created 5 classification models for this project:
+### Model Descriptions
+We created 5 classification models:
+
 * Logistic Regression - Using only engineered features
 * Logistic Regression - Using all features
 * Logistic Regression - Using feature selection
@@ -182,7 +181,9 @@ We created 5 classification models for this project:
 
 Model success was measured by looking at the Receiver Operating Characteristic Curve (ROC AUC) score.  This will allow us to measure how well our model predicts default loans, taking into account true & false positives.  
 
-### Logistic Regression (Engineered Features)
+We dive deeper into the creation of each model in the following sections.
+
+#### Logistic Regression (Engineered Features)
 The assumption is that this model will perform poorly as there are very few features that can be used to predict our outcome.  These features include:
 
 | Feature Name | Description |
@@ -199,15 +200,15 @@ The model produced an roc auc score of ~ 0.57; A score which is just slightly be
 
 ![class_lr_ef_results](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/class_lr_ef_results.png)
 
-As we originally thought, this model will not work.  Looking at the classification report, we know that the model is not even predicting the default class.  We need to build a more robust model.
+As we originally thought, this model will not work.  Looking at the classification report, we know that the model is not predicting the default class.  We need to build a more robust model.
 
 ![class_lr_ef_classification_report](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/class_lr_ef_classification_report.png)
 
-## Logistic Regression (All Features)
+#### Logistic Regression (All Features)
 We began on one extreme, using only engineered features.  Our second model tests the other extreme, using all features when building a model.
 
-The Lending Club dataset contains features that relate to Lending Club's own risk classification (e.g. loan grade, sub grade, loan status) as well as the current health status of a loan (e.g. current payments, interest collected, late fees collected).  
-
+The Lending Club dataset contains features that relate to Lending Club's own risk classification (e.g. loan grade, subgrade, loan status) as well as the current health status of a loan (e.g. current payments, interest collected, late fees collected).
+  
 Since we want to create a model that determines default status before a loanee receives the loan, features related to risk & current health status of a loan were removed.  Features included:
 
 * total_pymnt
@@ -230,7 +231,7 @@ The Logistic Regression model using all features produced a cross validation roc
 
 Using all 120 features means that our model is more complex than it needs to be.  Reducing the number of features can reduce the complexity of the model and increase performance.   
 
-### Logistic Regression (Feature Selection)
+#### Logistic Regression (Feature Selection)
 Testing a compromise between both extremes, we created a Logistic Regression model using feature selection; utilizing a subset of all features to find a less complex model while retaining a high roc auc score.
 
 Several feature selection techniques were tested in order to find a method that maintained a high roc auc score while decreasing model complexity.  The following techniques were tested:
@@ -248,8 +249,7 @@ SelectFromModel using LinearSVC appears to have performed best.  An roc auc scor
 Although PCA does not select features (rather it selects components), we find that PCA would require over 120 components in order to match a score of 0.87. We are not reducing the complexity of our model in this case, and therefore we will not use PCA in this analysis.
 
 Finally, SelectKBest appears to have performed almost as good as LinearSVC.  The difference is that SelectKBest achieves results in a fraction of time over LinearSVC (as we are not using a classification algorithm to perform feature selection). As a result, we are going to use SelectKBest as our feature selection, using only 35 features.
-
-In order to optimize the Logistic Regression model as much as possible, we have also performed hyperparamter tuning using GridSearchCV to determine that C = 500 performs optimally.
+In order to optimize the Logistic Regression model as much as possible, we have also performed hyperparameter tuning using GridSearchCV to determine that C = 500 performs optimally.
 
 The result was a model that produced a cross validation roc auc score of 0.88 using only 35 features.  Considerably better than our prior two models:
 
@@ -259,7 +259,7 @@ When looking at the classification report, the recall score is frightening low. 
 
 ![class_lr_fs_classification_report](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/class_lr_fs_classification_report.png)
 
-### Random Forest Classifier (Feature Selection)
+#### Random Forest Classifier (Feature Selection)
 With the testing of Logistic Regression complete, we have a benchmark that can be used to compare against other classification algorithms.  Random Forest Classifier was used as a comparison classifier for this project.  A model was created using the previously SelectKBest feature selection.
 
 We also wanted to tune the Random Forest Classifier much like the Logistic Regression model.  Not knowing where to start on parameter tuning, we first tested a wide range of parameter values individually.
@@ -297,8 +297,7 @@ The difference between the two models is the precision & recall scores - our Ran
 
 ![class_rf_fs_classification_report](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/class_rf_fs_classification_report.png)
 
-
-### Random Forest regression (Feature Selection - Balanced Classes)
+#### Random Forest Regression (Feature Selection - Balanced Classes)
 To address the issue of class imbalance, the SMOTE algorithm was used to balance classes prior to performing classification.  
 
 With classes balanced, we recreated the Random Forest Classifier using the tuned parameters as above.  Our results are considerably better, achieving a cross validation roc auc score of 0.97.  
@@ -321,107 +320,90 @@ When investigating feature importances as it relates to determining loan default
 | term | The number of payments on the loan (in months) |
 | mort_acc | Number of mortgage accounts |
 
-### Regression
+## 3. Building a Regression Model
 [(See full regression notebook)](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/notebooks/03-lending-club-regression.ipynb)
 
-In the classification section of this project, we looked to determine if we were able to predict whether a loanee would default on a given loan.  The next step was to see if we could predict how much a loanee will repay if a loanee does default.  If there is a high probability that a loanee defaults, investors may still make a profit if a loan has a high interest rate.
+In order to investigate if investors can turn a profit on defaulted loans, we will create a regression model predicting loan profitability.  This becomes interesting as investors may still make a profit on high interest loans, even if the loan defaults.
+Our regression model will be built using data consisting of defaulted loans only.  
 
-Since we are specifically targeting loans which default, we filter our dataset to only include completed loans that are in a default or charged off status.  
+As mentioned in the classification section above, a loan enters default status once it is overdue by 120 days.  For the purpose of our regression exercise, we will assume loans in a late status will default.  This assumption also increases the population size of our data that will be used for model training. As such, we will assume the following statuses are 'default':
 
-With our dataset filtered to only include loans that have defaulted or been charged off, we then determine the total repayment amount for each of the remaining loans. This allows us to see if any of our loans are profitable prior to defaulting.  
+* Late (16 - 30 days)
+* Late (31 - 120 days)
+* Default
+* Charged Off  
 
-Loan profitability is determined by subtracting the funded amount from the total repayment received prior to loan default. Based on the results, we found that only 5% of defaulted loans are actually profitable.  
+Loan profitability is calculated by subtracting the funded amount from the total repayment.  
 
-Looking at the loan profitability by grade, we find that lower grades have a higher chance of being profitable.  Defaulted loans of grade F appear to be most profitable.
+````
+df['profit'] = df['total_pymnt'] - df['funded_amnt']
+````
+
+Examining the profitability of the defaulted loans, it was found that only 5% of all defaulted loans are actually profitable.  Digging into the loan profitability by grade, we find that lower grades have a higher chance of being profitable.  This is aligned with our thoughts that defaulted loans with higher interest rates can result in higher profitability.  Defaulted loans of grade F appear to be most profitable:
 
 | Grade | Default Loan Profitability (%) |
-| A | 4.2 |
+| --- | --- |
+| A | 4.3 |
 | B | 4.6 |
 | C | 4.3 |
-| D | 5.2 |
-| E | 5.3 |
-| F | 6.1 |
-| G | 5.1 |
+| D | 5.3 |
+| E | 5.4 |
+| F | 6.3 |
+| G | 5.7 |
 
-## Model Descriptions
-Similarly to our classification section, we created several regression models to see how different algorithms and feature combinations performed.  These include:
+### Model Descriptions
+Several regression models were created in order to compare model & feature performance.  We followed similar steps for model creation as described in the classification section above:
 
-* Linear Regression - using only featured engineered columns
-* Linear Regression - Using all features
-* Linear Regression - Using feature selection
-* Random Forest Regression - Using all features
-* Random Forest Regression - Using feature selection
+1. Create a model using engineered features
+2. Create a model using all features
+3. Create a model using feature selection 
+4. Test alternative algorithms & hyperparameter tuning 
 
-Model success was determined by examining Root Mean Squared Error (RMSE).  This allows us to gauge the size of error associated with our model.  The higher the error, the less likely our model will be able to accurately predict repayment amount.   
+We won't go into details around model creation or hyperparameter tuning, as the steps are very much the same as what was described above in the classification section.  A detailed write up can also be found in the regression notebook linked at the top of this section. 
 
-### Linear Regression (Engineered Features)
-As one would expect, creating a model using only our Engineered Features will more likely than not create a model with a high RMSE.  As stated above, we only have 7 engineered features:
-
-
-| Feature Name | Description |
-| --- | --- |
-| low_deliqent_job | Identifies whether the loanee's occupation has a high probability of loan defaults |
-| credit_line_length_mnths | Identifies the length (in months) for which the loanee has established credit.  The longer the credit history, the less likely a loanee will default |
-| inq_last_6mths_cat | Identifies if the loanee has requested a credit check in the last 6 months |
-| pub_rec_cat | Identifies if the loanee has had a derogatory public record.
-| fully_funded | Identifies if the requested loan has been fully backed by investors |
-| issue_d_year | Identifies the year for which the loan request was issued |
-| issue_d_month | Identifies the month for which the loan request was issued |
-
-
-The resulting model produced an RMSE of ~$6460, meaning our model will provide an estimate of repayment within +/- $6460.  This is not accurate enough for a productive model.  
-
-### Linear Regression (All Features)
-The next step was to create a model using all features to determine if we can reduce our RMSE.
-
-The result of this model appears to generalize to the training data, performing poorly on our testing dataset with an RMSE of over 1.2 x 10^12.
-
-Looking into the residual values, we can clearly see that this model suffers from heteroscedasticity.  
-
-![reg_lr_af_results](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_results.png)
-
-### Linear Regression (Feature Selection)
-We've seen heteroscedasticity in our prior model, which has poor results with our testing dataset.  In order to remove this heteroscedasticity, we will look at feature selection to eliminate collinearity .
-
-Feature selection was performed manually by observing Pearson correlation coefficients in a pair plot (see below) and selecting those features which had a correlation of at least 0.2 to our target variable of loan profit.
+The one variation in the process was feature selection.  For our regression model we hand selected features based on their correlation with the target variable (profit).  Features which were correlated to our target variable with at least 0.2 correlation coefficient were selected, while all others were removed. The correlation coefficient was produced using a pair grid, as seen below:  
 
 ![reg_lr_af_corr](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_corr.png)
 
-Based on this manual selection, we reduce our feature set down to 21 features. We needed to also ensure that we remove any highly correlated features, which we confirmed by viewing a correlation matrix:
+Model success was determined by Root Mean Squared Error (RMSE).  This allows us to gauge the size of error associated with each model.  The higher the error, the less likely our model will be able to accurately predict repayment amount.  
 
-![reg_lr_af_corr_matrix](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_lr_af_corr_matrix.png)
+We began using a Linear Regression model before moving on to Decision Tree Regression and Random Forest Regression.  The results are as follows:  
 
-Upon viewing the above matrix, we dropped 6 additional columns (funded_amnt, installment, tot_cur_bal, total_rev_hi_lim, tot_hi_cred_lim, total_il_high_credit_limit), leaving us with 15 features to perform the model creation.
+| Model | RMSE |
+| --- | --- |
+| Linear Regression - Engineered Features | 6468 |
+| Linear Regression - All Features | 3950 |
+| Linear Regression - Feature Selection | 4130 |
+| Decision Tree Regression - Feature Selection | 5162 |
+| Random Forest Regression - Feature Selection | 3682 |
 
-The Linear Regression model created using 15 features performed just as poorly as our model with all features.  The model performed well on the training dataset.  It is however, unable to predict the expected profit using our test dataset - producing an RMSE of 2.6 x 10^14.  This does not create a suitable model to solve our problem.
+Our best model was produced by a Random Forest Regressor using feature selection.  This model was able to predict loan profitability with a cross validation RMSE of $3682. 
 
-### Decision Tree Regressor (Feature Selection)
-We were unable to produce a linear regression model to accurately predict the amount of profit on defaulted loans.  Our next step is to create a model using Decision Tree Regression.  We will again use our 15 features selected during feature selection.
+Although it was our best result, this model does not provide great confidence in being able to accurately predict profitability.  Investors would have to assume a great risk using a model with such a high RMSE. 
 
-The results are significantly better.  Our training dataset produces a model with RMSE of 0.  Running our test dataset through the model, we achieve an RMSE of ~$4940.  
+The reason behind the inaccurate prediction is most likely due to the high variance in repayment.  There are many factors that go into the prediction - For example, a loanee could suffer from environmental impacts such as hurricanes or floods, increasing their chances of defaulting. 
 
-The plot of the residuals for our test dataset also displays that our heteroscedasticity has been decreased, but still present.
+## 4. Conclusion
+Working with Lending Club's historical loan data has provided me with the opportunity to build prediction models using real world data.  It allowed me to practice imputing missing data, feature manipulation, and feature engineering leading into the creation and tuning of both classification and regression models.
 
-![reg_dt_fs_residuals](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_dt_fs_residuals.png)
+Our final classification model using a Random Forest Classifier produced a fantastic 0.97 cross validation roc auc score.  With this model, we are able to predict whether or not a loanee will default.  We also found that the top 5 features impacting default status are: 
 
-### Random Forest Regressor (Feature Selection)
-Finally we test a third regression model in search of being able to predict the amount of profit on defaulted loans.  Our final model is build using a Random Forest Regressor.
+| Feature | Description |
+| --- | --- |
+| delinq_2yrs | The number of of 30+ days past-due incidences of delinquency in the borrower's credit in the past 2 years. |
+| open_acc | The number of open credit lines in the borrower's credit file |
+| int_rate | Interest rate on the loan |
+| term | The number of payments on the loan (in months) |
+| mort_acc | Number of mortgage accounts |
 
-Hyperparameter tuning was performed using RandomizedSearchCV to find optimal parameters for our model.  
+This classification model is helpful to Lending Club for loan interest & grade assignment.  A loanee who is expected to default should be assigned a higher interest rate and lower loan grade.  These indicators also provide investors with the risk associated to loan defaults. 
 
-However, like we have seen previously, our model was only able to produce an RMSE of ~$3650.  It performs better than our Decision Tree Regressor, but still see reminents of heteroscedasticity within our dataset used.
 
-![reg_rf_fs_residuals](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project2-predictive-modeling/reports/figures/reg_rf_fs_residuals.png)
+Our regression model using Random Forest Regression produced less than a less fantastic RMSE score of $3682.  The ability to predict loan profitability on default loans is difficult with the current dataset.  The high variability in loan repayments is dependent on many external factors which are not captured in this model (eg: current job market, weather, loanee health, etc).  A loan profitability model is helpful to investors as it allows them to calculate the potential profit associated to lending funds to loanees with a high risk of defaulting.  An investor could still make money on default loans given a high enough interest rate and accurate repayment prediction. 
+  
+Given additional time to redo this project, there are several items which I consider:
+1.  **Recreate models (both classification and regression) with & without the column set added in 2012.**  The current model uses imputed means for missing data on loans captured prior to 2012.  The imputed means add bias to the dataset - Creating a model with & without the columns would allow comparisons to see how imputing the data affects the outcome. 
 
-Even if we are able to correctly identify a loanee as a potential default, we can only predict the payback with an accuracy of +/- $3650.  This does not provide great confidence.
-
-The reason behind the inaccurate prediction is most likely due to the high variance in repayment.  There are many factors that go into the prediction, many which lie outside of the dataset provided. For example, a loanee could lose their source of income, or environmental impacts such as hurricanes & floods could increase financial burdens.
-
-This was a good exercise in creation of a regression model, but ultimately did not provide a model that could be used in predicting loan repayment.
-
-## Conclusions & Next Steps
-Through this project we were able to produce a model for classifcation prediction.
-
-* Given time, I would recreate models with & without the columns missing from prior to 2012.  I feel that I had added bias to the data by imputing the mean for each column in data prior to 2012.  Creating models with & without the columns would allow comparisons to see how imputing data affects the outcome.  
-* Balance classes sooner - use throughout
-* have additional features for use in predicting repayment 
+2. **Balance classes sooner (for classification models).**  I believe using balanced classes throughout the model building process would provide better comparisons.  In my workflow, I found the best model using unbalanced classes, and then tested my best model using a balanced dataset.  Using balanced classes from the beginning could have revealed different results. 
+   
+3.  **Include additional external features (for regression models).** Our regression models did not capture any external features that might be related to loan repayment (eg. hurricanes, tornados, forest fires, political changes).  Additional features may help in accurately predicting loan profitability.  These features could also help in identifying default status in our classification model as well. 
