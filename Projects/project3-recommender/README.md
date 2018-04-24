@@ -27,7 +27,7 @@ With this data, we can begin to answer questions around customer purchasing habi
 #### When do customers shop?
 Primarily, customers shop between the hours of 08:00 and 18:00.  
 
-![shopping hours](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project3-recommender/reports/figures/ordres_per_hour.png)
+![shopping hours](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project3-recommender/reports/figures/orders_per_hour.png)
 
 The most popular days to shop are 0 and 1.  Instacart does not provide details around the meaning of these values, but my assumption is that 0 & 1 correspond to Saturday and/or Sunday.  Mid-week values (3 & 4) represent the lower frequency of purchases.  
 
@@ -312,4 +312,4 @@ Why are recommenders such as the one we created using collaborative filtering im
 ## Final Thoughts
 Overall, this project gave me great insight into how clustering and recommender algorithms function.  Both are important tools for analyzing how customers interact with products and allow companies to fine tune the customer experience.
 
-Looking forward, I'd like to investigate processing larger amounts of data for projects like these, as my assumption is that results in both clustering and recommendations would improve. 
+Looking forward, I'd like to investigate processing larger amounts of data for projects like these, as my assumption is that results in both clustering and recommendations would improve.
