@@ -6,7 +6,8 @@ For the purpose of this analysis, we will utilize the Instacart dataset to explo
 2. Can we build a recommender to recommend new products to customers based on their prior purchases?
 
 # 1. Exploratory Data Analysis
-Before diving into modeling the data, we took a closer look to understand trends within the data.
+Before diving into modeling the data, we took a closer look to understand trends within the data.  [See full Exploratory Data Analysis notebook here.](https://github.com/mrjgamble/K2DataScience/blob/master/Projects/project3-recommender/notebooks/01-instacart-eda.ipynb)
+
 
 The dataset is split in several key data files:
 
