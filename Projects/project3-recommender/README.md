@@ -191,7 +191,7 @@ The problem with this method is that these recommendations are not customer spec
 
 ## Association Rules
 ### Approach
-An association rules provide us with a simple equation **A -> B**, where the right hand side of the equation (consequents) represents products a customer is likely to purchase as a result of having the items on the left hand side (antecedants) already in their basket.
+Association rules provide us with a simple equation **A -> B**, where the right hand side of the equation (consequents) represents products a customer is likely to purchase as a result of having the items on the left hand side (antecedants) already in their basket.
 
 Grocery stores utilize association rules to know which products they should place together in order to foster additional purchases. We can also use association rules to recommend products based on what products have currently been added to a shopping cart.  
 
