@@ -1,4 +1,4 @@
-Welcome to my project repository for the K2 Data Science bootcamp.  Three projects are available: 
+## K2 Data Science Portfolio
 
 1) [Exploratory Data Analysis](https://github.com/mrjgamble/K2DataScience/tree/master/Projects/project1-eda)
     * A first look into performing an Exploratory Data Analsys.  
